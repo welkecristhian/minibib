@@ -23,7 +23,7 @@ class CrudTest extends DuskTestCase
             $browser->visit('/')
                 ->clickLink('Entrar')
                 ->waitForText('Usuário')
-                ->type('#loginUsuario', '111111')
+                ->type('#loginUsuario', '11111')
                 ->press('Login')
                 ->AssertSee('Sair');
      });
