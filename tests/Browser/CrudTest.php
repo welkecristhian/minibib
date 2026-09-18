@@ -25,6 +25,8 @@ class CrudTest extends DuskTestCase
                 ->waitForText('Usuário')
                 ->type('#loginUsuario', '11111')
                 ->press('Login')
+                ->visit('/')
+                ->pause(100)
                 ->AssertSee('Sair');
      });
     }
