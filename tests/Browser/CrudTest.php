@@ -112,9 +112,8 @@ class CrudTest extends DuskTestCase
                     ->click("@emprestar_material")
                     ->pause(2000)
                     ->typeSlowly("n_usp","16816232")
-                    ->pause(2000)
                     ->click("@confirmar_emprestimo")
-                    
+                    ->pause(2000)
                     ->click("@devolver_exemplar")
                     ->pause(1000)
                     ->click("@confirmar_devolucao")
