@@ -115,6 +115,7 @@ class CrudTest extends DuskTestCase
                     ->click("@confirmar_emprestimo")
                     ->visit('/emprestimos')
                     ->waitForText('Emprestados')
+                    ->pause(100)
                     ->click("@devolver_exemplar")
                     ->pause(1000)
                     ->click("@confirmar_devolucao")
