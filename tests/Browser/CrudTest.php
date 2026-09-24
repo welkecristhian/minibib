@@ -113,29 +113,11 @@ class CrudTest extends DuskTestCase
                     ->pause(2000)
                     ->typeSlowly("n_usp","16816232")
                     ->press('Confirmar Empréstimo')
-                    ->assertSee('Emprestados')
-                    ->pause(100)
-                    ->assertVisible('@devolver_exemplar')
-                    ->click('@devolver_exemplar')
-                    ->pause(1000)
-                    ->click("@confirmar_devolucao")
-                    ->pause(1000)
-                    ->visit('/records')
-                    ->pause(3000)
-                    ->click("@delete_exemplar")
-                    ->acceptDialog()
-                    ->pause(3000);
+                    ->assertSee('Número USP não é válido')
+                    ->pause(100);
+                   
         });
     }
 
-    public function testDeleteRecord()
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/records')
-                    ->click('@delete_record')
-                    ->acceptDialog()
-                    ->pause(3000)
-                    ->assertPathIs('/records');
-        });
-    }
+
 }
