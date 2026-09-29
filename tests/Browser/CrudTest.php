@@ -46,7 +46,7 @@ class CrudTest extends DuskTestCase
                     ->select('idioma','pt_BR')
                     ->type('isbn','978-85-359-1403-4')
                     ->typeSlowly('issn','---')
-                    ->press('@save_record')
+                    ->press('Salvar')
                     ->assertPathIs('/records')
                     ->pause(3000);
         });
@@ -56,7 +56,7 @@ class CrudTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/records')
                     ->pause(2000)
-                    ->click('@edit_record')
+                    ->clicklink('Editar')
                     ->select('tipo','Livro')
                     ->assertSee('Edição de Cadastro')
                     ->clear('autores')
@@ -81,7 +81,7 @@ class CrudTest extends DuskTestCase
                     ->clear('issn')
                     ->typeSlowly('issn','---')
                     ->pause(1000)
-                    ->press('@save_record')
+                    ->press('Salvar')
                     ->pause(3000);
         });
     }
@@ -90,39 +90,38 @@ class CrudTest extends DuskTestCase
     public function testExemplarCreate()
     {
         $this->browse(function (Browser $browser) {
-            $browser->click('@cadastrar_exemplar')
+            $browser->clicklink('Cadastrar Exemplar')
                     ->pause(300)
                     ->typeSlowly('tombo','909090')
                     ->typeSlowly('localizacao','estante 3.v4')
                     ->pause(1000)
-                    ->press("@save_instance")
+                    ->press('Salvar')
                     ->pause(3000);
         });
     }
 
     public function testExemplarUpdate(){
         $this->browse(function (Browser $browser) {
-            $browser->click('@instance')
-                    ->click('@edit_instance')
+            $browser->click('.list-group-item.list-group-item-action')
+                    ->clicklink('Editar Exemplar')
                     ->typeSlowly('tombo','12345678')
                     ->typeSlowly('localizacao','estante 3.v1')
-                    ->press("@save_instance")
-                    ->click('@instance')
-                    ->click("@emprestar_material")
+                    ->press('Salvar')
+                    ->pause(100)
+                    ->visit('/records')
+                    ->clicklink('Emprestar')
                     ->pause(100)
                     ->typeSlowly("#n_usp","16816232")
-                    ->click("@confirmar_emprestimo")
-                    ->visit('/emprestimos')
-                    ->waitFor('@devolver_exemplar', 10)
+                    ->press('Confirmar Empréstimo')
                     ->pause(100)
-                    ->assertVisible('@devolver_exemplar')
-                    ->click('@devolver_exemplar')
+                    ->visit('/emprestimos')
+                    ->clicklink('Devolver')
                     ->pause(1000)
-                    ->click("@confirmar_devolucao")
+                    ->press('Confirmar Devolução de Material')
                     ->pause(1000)
                     ->visit('/records')
                     ->pause(3000)
-                    ->click("@delete_exemplar")
+                    ->press('Deletar exemplar')
                     ->acceptDialog()
                     ->pause(3000);
         });
@@ -132,7 +131,7 @@ class CrudTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/records')
-                    ->click('@delete_record')
+                    ->press('Excluir')
                     ->acceptDialog()
                     ->pause(3000)
                     ->assertPathIs('/records');
