@@ -109,7 +109,7 @@ class CrudTest extends DuskTestCase
                     ->press('Salvar')
                     ->pause(100)
                     ->visit('/records')
-                    ->clicklink('Emprestar')
+                    ->click('a[href*="/emprestimos/create/"]')
                     ->pause(100)
                     ->typeSlowly("#n_usp","16816232")
                     ->press('Confirmar Empréstimo')
