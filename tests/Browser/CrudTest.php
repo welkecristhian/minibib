@@ -102,21 +102,21 @@ class CrudTest extends DuskTestCase
 
     public function testExemplarUpdate(){
         $this->browse(function (Browser $browser) {
-            $browser
-                    ->clicklink('909090')
-                    ->clicklink('Editar Exemplar')
+            $browser  
+                    ->clickLink('909090')
+                    ->clickLink('Editar Exemplar')
                     ->typeSlowly('tombo','12345678')
                     ->typeSlowly('localizacao','estante 3.v1')
                     ->press('Salvar')
                     ->pause(100)
-                    ->clicklink('12345678')
+                    ->clickLink('12345678')
                     ->clickLink('Emprestar Material')
                     ->pause(100)
                     ->typeSlowly("#n_usp","16816232")
                     ->press('Confirmar Empréstimo')
                     ->pause(100)
                     ->visit('/emprestimos')
-                    ->clicklink('Devolver')
+                    ->clickLink('Devolver')
                     ->pause(1000)
                     ->press('Confirmar Devolução de Material')
                     ->pause(1000)
