@@ -109,6 +109,7 @@ class CrudTest extends DuskTestCase
                     ->press('Salvar')
                     ->pause(100)
                     ->visit('/records')
+                    ->waitfor('a[href*="/emprestimos/create/"]')
                     ->click('a[href*="/emprestimos/create/"]')
                     ->pause(100)
                     ->typeSlowly("#n_usp","16816232")
