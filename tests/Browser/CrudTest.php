@@ -82,7 +82,7 @@ class CrudTest extends DuskTestCase
                     ->typeSlowly('issn','---')
                     ->pause(1000)
                     ->press('Salvar')
-                    ->pause(3000);
+                    ->pause(300);
         });
     }
 
@@ -90,19 +90,19 @@ class CrudTest extends DuskTestCase
     public function testExemplarCreate()
     {
         $this->browse(function (Browser $browser) {
-            $browser->clicklink('Cadastrar Exemplar')
+            $browser->clickLink('Cadastrar Exemplar')
                     ->pause(300)
                     ->typeSlowly('tombo','909090')
                     ->typeSlowly('localizacao','estante 3.v4')
-                    ->pause(1000)
-                    ->press('Salvar')
-                    ->pause(3000);
+                    ->pause(100)
+                    ->press('Salvar');
         });
     }
 
     public function testExemplarUpdate(){
         $this->browse(function (Browser $browser) {
-            $browser  
+            $browser->visit('/records')
+                    ->clickLink('Visualizar Material')
                     ->clickLink('909090')
                     ->clickLink('Editar Exemplar')
                     ->typeSlowly('tombo','12345678')
