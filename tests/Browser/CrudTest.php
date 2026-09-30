@@ -95,23 +95,28 @@ class CrudTest extends DuskTestCase
                     ->typeSlowly('tombo','909090')
                     ->typeSlowly('localizacao','estante 3.v4')
                     ->pause(100)
-                    ->press('Salvar')
-                    ->pause(100)
-                    ->visit('/records')
+                    ->press('Salvar');
+        });
+    }
+
+    public function testExemplarUpdate(){
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/records')
                     ->clickLink('Visualizar Material')
+                    ->waitForLink('909090')
                     ->clickLink('909090')
                     ->clickLink('Editar Exemplar')
                     ->typeSlowly('tombo','12345678')
                     ->typeSlowly('localizacao','estante 3.v1')
                     ->press('Salvar')
                     ->pause(100)
-                    ->clickLink('12345678')
-                    ->clickLink('Emprestar Material')
+                    ->visit('/records')
+                    ->clickLInk('Emprestar')
                     ->pause(100)
                     ->typeSlowly("#n_usp","16816232")
                     ->press('Confirmar Empréstimo')
                     ->pause(100)
-                    ->visit('/emprestimos')
+                    ->waitForLink('Devolver')
                     ->clickLink('Devolver')
                     ->pause(1000)
                     ->press('Confirmar Devolução de Material')
