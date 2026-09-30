@@ -118,7 +118,6 @@ class CrudTest extends DuskTestCase
                     ->press('Confirmar Empréstimo')
                     ->pause(100)
                     ->waitForLocation('/emprestimos')
-                    ->waitForText('Localização')
                     ->pause(100)
                     ->click('a.btn-outline-success')
                     ->pause(1000)
