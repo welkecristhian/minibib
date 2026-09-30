@@ -111,9 +111,9 @@ class CrudTest extends DuskTestCase
                     ->press('Salvar')
                     ->pause(100)
                     ->visit('/records')
-                    ->clickLInk('Emprestar')
+                    ->clickLink('Emprestar')
                     ->pause(100)
-                    ->typeSlowly("#n_usp","16821221")
+                    ->typeSlowly("n_usp","16816232")
                     ->press('Confirmar Empréstimo')
                     ->waitForText('Localização')
                     ->pause(100)
@@ -121,11 +121,8 @@ class CrudTest extends DuskTestCase
                     ->pause(1000)
                     ->press('Confirmar Devolução de Material')
                     ->pause(1000)
-                    ->visit('/records')
-                    ->pause(3000)
-                    ->press('Deletar exemplar')
-                    ->acceptDialog()
-                    ->pause(3000);
+                    ->visit('/records');
+                    
         });
     }
 
@@ -133,6 +130,10 @@ class CrudTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/records')
+                    ->pause(3000)
+                    ->press('Deletar exemplar')
+                    ->acceptDialog()
+                    ->pause(3000)
                     ->press('Excluir')
                     ->acceptDialog()
                     ->pause(3000)
