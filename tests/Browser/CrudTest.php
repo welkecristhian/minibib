@@ -95,13 +95,9 @@ class CrudTest extends DuskTestCase
                     ->typeSlowly('tombo','909090')
                     ->typeSlowly('localizacao','estante 3.v4')
                     ->pause(100)
-                    ->press('Salvar');
-        });
-    }
-
-    public function testExemplarUpdate(){
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/records')
+                    ->press('Salvar')
+                    ->pause(100)
+                    ->visit('/records')
                     ->clickLink('Visualizar Material')
                     ->clickLink('909090')
                     ->clickLink('Editar Exemplar')
