@@ -16,7 +16,7 @@ class CrudTest extends DuskTestCase
      * @return void
      */
     //php artisan dusk:chrome-driver --detect-chromedriver
-    public function testLoginRecord()
+    public function testCrudMinibib()
     {
          $this->browse(function (Browser $browser) {
             //login do usuário
@@ -25,15 +25,10 @@ class CrudTest extends DuskTestCase
                 ->waitForText('Usuário')
                 ->type('#loginUsuario', '11111')
                 ->press('Login')
-                ->AssertSee('Sair');
-     });
-    }
+                ->AssertSee('Sair')
 
-
-    public function testCreateRecord() {
-         $this->browse(function (Browser $browser) {
-        
-            $browser->visit('/records/create')
+                //Create Record
+                    ->visit('/records/create')
                     ->select('tipo','Livro')
                     ->typeSlowly('autores','Jorge Amado')
                     ->typeSlowly('titulo','Capitães da Areia')
@@ -48,13 +43,11 @@ class CrudTest extends DuskTestCase
                     ->typeSlowly('issn','---')
                     ->press('Salvar')
                     ->assertPathIs('/records')
-                    ->pause(3000);
-        });
-    }
+                    ->pause(3000)
 
-    public function testUpdateRecord(){
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/records')
+                    // Record update
+
+                    ->visit('/records')
                     ->pause(2000)
                     ->clicklink('Editar')
                     ->select('tipo','Livro')
@@ -82,26 +75,20 @@ class CrudTest extends DuskTestCase
                     ->typeSlowly('issn','---')
                     ->pause(1000)
                     ->press('Salvar')
-                    ->pause(300);
-        });
-    }
+                    ->pause(300)
+       
+                  //Exemplar Test Create
 
-
-    public function testExemplarCreate()
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->clickLink('Cadastrar Exemplar')
+                    ->clickLink('Cadastrar Exemplar')
                     ->pause(300)
                     ->typeSlowly('tombo','909090')
                     ->typeSlowly('localizacao','estante 3.v4')
                     ->pause(100)
-                    ->press('Salvar');
-        });
-    }
-
-    public function testExemplarUpdate(){
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/records')
+                    ->press('Salvar')
+                    
+                   // Exemplar Test update
+                    
+                    ->visit('/records')
                     ->clickLink('Visualizar Material')
                     ->waitForLink('909090')
                     ->clickLink('909090')
@@ -123,15 +110,11 @@ class CrudTest extends DuskTestCase
                     ->pause(1000)
                     ->press('Confirmar Devolução de Material')
                     ->pause(1000)
-                    ->visit('/records');
+                    ->visit('/records')
+                
                     
-        });
-    }
+                 //delete record
 
-    public function testDeleteRecord()
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/records')
                     ->pause(3000)
                     ->press('Deletar exemplar')
                     ->acceptDialog()
