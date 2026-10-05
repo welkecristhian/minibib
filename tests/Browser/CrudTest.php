@@ -119,7 +119,7 @@ class CrudTest extends DuskTestCase
                     ->pause(100)
                     ->waitForLocation('/emprestimos')
                     ->pause(100)
-                    ->click('a.btn-outline-success')
+                    ->clickLink('Devolver')
                     ->pause(1000)
                     ->press('Confirmar Devolução de Material')
                     ->pause(1000)
@@ -139,7 +139,7 @@ class CrudTest extends DuskTestCase
                     ->press('Excluir')
                     ->acceptDialog()
                     ->pause(3000)
-                    ->assertPathIs('/records');
+                    ->assertSeeIn('.alert-warning', 'Registro deletado');
         });
     }
 }
