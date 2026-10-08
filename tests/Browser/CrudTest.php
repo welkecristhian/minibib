@@ -106,7 +106,7 @@ class CrudTest extends DuskTestCase
                     ->pause(100)
                     ->visit('/emprestimos')
                     ->pause(100)
-                    ->assertSee('Exemplar')
+                    ->assertSee('Emprestados')
                     ->clickLink('Devolver')
                     ->pause(1000)
                     ->press('Confirmar Devolução de Material')
